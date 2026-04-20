@@ -1,0 +1,106 @@
+# ===== DANE =====
+# Nigdy nie commitujemy danych - są za duże i powinny być z innego źródła
+data/raw/*
+data/interim/*
+data/processed/*
+# Ale zachowujemy strukturę folderów przez .gitkeep
+!data/raw/.gitkeep
+!data/interim/.gitkeep
+!data/processed/.gitkeep
+
+# ===== MODELE =====
+# Wytrenowane modele są duże i nie powinny być w repo
+models/*
+!models/.gitkeep
+*.pkl
+*.joblib
+*.h5
+*.pt
+*.pth
+*.onnx
+
+# ===== WYGENEROWANE RAPORTY =====
+reports/figures/*
+!reports/figures/.gitkeep
+
+# ===== PYTHON =====
+# Skompilowany bytecode i cache
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+
+# Dystrybucja i instalacja
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# ===== ŚRODOWISKA WIRTUALNE =====
+# Środowiska nie są częścią kodu - każdy ma swoje lokalnie
+.venv/
+venv/
+env/
+ENV/
+.conda/
+
+# ===== JUPYTER =====
+# Checkpointy Jupytera (automatyczne kopie zapasowe)
+.ipynb_checkpoints/
+*/.ipynb_checkpoints/*
+
+# ===== IDE =====
+# VS Code - częściowo ignorujemy (indywidualne ustawienia)
+.vscode/*
+!.vscode/settings.json
+!.vscode/extensions.json
+# PyCharm
+.idea/
+# Spyder
+.spyderproject
+.spyproject
+
+# ===== SYSTEM OPERACYJNY =====
+# Windows
+Thumbs.db
+Desktop.ini
+# macOS
+.DS_Store
+# Linux
+*~
+
+# ===== LOGI I TYMCZASOWE =====
+*.log
+*.tmp
+*.bak
+*.swp
+
+# ===== ZMIENNE ŚRODOWISKOWE I SEKRETY =====
+# NIGDY nie commitujemy plików .env z sekretami
+.env
+.env.local
+.env.*.local
+*.pem
+*.key
+!*.pub
+
+# ===== NARZĘDZIA ANALIZY =====
+# Coverage, pytest, mypy
+.coverage
+.coverage.*
+htmlcov/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
