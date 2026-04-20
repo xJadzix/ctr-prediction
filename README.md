@@ -1,55 +1,55 @@
 # CTR Prediction - Real-Time Bidding
 
-Projekt przewidywania prawdopodobieństwa kliknięcia reklamy (Click-Through Rate) w kontekście systemów Real-Time Bidding (RTB).
+A click-through rate (CTR) prediction pipeline for Real-Time Bidding (RTB) advertising systems.
 
-## Kontekst
+## Context
 
-W programmatic advertising każde wyświetlenie reklamy jest licytowane w czasie rzeczywistym (~100 ms). Kluczowym elementem decyzyjnym jest predykcja CTR - prawdopodobieństwa kliknięcia dla konkretnego bid requestu. Od jakości tej predykcji zależy, ile reklamodawca powinien zapłacić w aukcji, co bezpośrednio przekłada się na zwrot z inwestycji w kampanię.
+In programmatic advertising, each ad impression is auctioned in real time (~100 ms). A key decision component is CTR prediction - the probability that a user will click on an ad for a given bid request. The quality of this prediction directly determines how much an advertiser should bid in the auction, which translates into campaign ROI.
 
-## Cel projektu
+## Project Goal
 
-Zbudowanie kompletnego pipeline'u CTR prediction z naciskiem na aspekty istotne w produkcyjnych systemach RTB:
+Building a complete CTR prediction pipeline with emphasis on aspects that matter in production RTB systems:
 
-- Praca z wysokokardynalnymi cechami kategorialnymi
-- Walidacja chronologiczna (zamiast losowej)
-- Kalibracja prawdopodobieństw (nie tylko ranking)
-- Serwowanie predykcji w architekturze streamingowej
+- Handling high-cardinality categorical features
+- Chronological validation (instead of random splits)
+- Probability calibration (not just ranking quality)
+- Serving predictions in a streaming architecture
 
 ## Dataset
 
-Avazu Click-Through Rate Prediction - publicznie dostępny dataset z mobilnej sieci reklamowej, zawierający ~40 mln bid requestów z 10 dni (21-30 października 2014).
+Avazu Click-Through Rate Prediction - a publicly available dataset from a mobile ad network, containing ~40M bid requests from 10 days (October 21-30, 2014).
 
-Źródło: https://www.kaggle.com/c/avazu-ctr-prediction/data
+Source: https://www.kaggle.com/c/avazu-ctr-prediction/data
 
-## Stack technologiczny
+## Tech Stack
 
 - Python 3.11
-- PySpark (wstępna agregacja dużych danych)
-- scikit-learn, LightGBM (modelowanie)
-- Pandas, NumPy (przetwarzanie)
-- Docker, GitHub Actions (deployment i CI/CD)
-- Apache Kafka (symulacja streamowania)
+- PySpark (large-scale data aggregation)
+- scikit-learn, LightGBM (modeling)
+- Pandas, NumPy (data processing)
+- Docker, GitHub Actions (deployment and CI/CD)
+- Apache Kafka (streaming simulation)
 
 ## Status
 
-W trakcie realizacji.
+Work in progress.
 
-## Struktura repozytorium
+## Repository Structure
 
 ctr-prediction/
-├── data/               # dane (ignorowane przez git)
-├── notebooks/          # notebooki do EDA i eksperymentów
-├── src/                # moduły Pythona
-│   ├── data/           # ładowanie i preprocessing
-│   ├── features/       # feature engineering
-│   ├── models/         # trening, ewaluacja, kalibracja
-│   └── utils/          # funkcje pomocnicze
-├── models/             # wytrenowane modele (ignorowane przez git)
-├── reports/            # wykresy i metryki
-├── tests/              # testy jednostkowe
-├── environment.yml     # definicja środowiska conda
-└── README.md           # ten plik
+|-- data/               # datasets (git-ignored)
+|-- notebooks/          # Jupyter notebooks for EDA and experiments
+|-- src/                # Python modules
+|   |-- data/           # data loading and preprocessing
+|   |-- features/       # feature engineering
+|   |-- models/         # training, evaluation, calibration
+|   `-- utils/          # helper functions
+|-- models/             # trained models (git-ignored)
+|-- reports/            # figures and metrics
+|-- tests/              # unit tests
+|-- environment.yml     # conda environment definition
+`-- README.md           # this file
 
-## Autor
+## Author
 
 Jagoda Budnik - [GitHub](https://github.com/xJadzix)
