@@ -32,7 +32,26 @@ Source: https://www.kaggle.com/c/avazu-ctr-prediction/data
 
 ## Status
 
-Work in progress.
+Work in progress. Current phase: exploratory data analysis completed.
+
+### Completed
+
+- Project setup with conda environment, Git, and SSH authentication
+- Data loading and schema verification (Avazu, 40M rows, 24 columns)
+- Exploratory data analysis
+    - Baseline CTR, temporal patterns, column cardinalities
+    - Placeholder identification (app vs site traffic split)
+    - Predictive power assessment of features (banner position, device type, connection type, anonymized C columns)
+    - Correlation analysis of suspected duplicate features
+- Data conversion to Parquet format for faster iteration
+- Chronological train/validation split (days 21-28 vs 29-30)
+
+### Next steps
+- Feature engineering (time features, traffic type flag, categorical encoding)
+- Baseline logistic regression model
+- LightGBM with native categorical handling
+- Deployment setup (Docker, CI/CD)
+- Real-time serving simulation with Kafka
 
 ## Repository Structure
 
