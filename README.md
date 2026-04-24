@@ -57,11 +57,16 @@ Work in progress. Current phase: baseline model complete, moving to LightGBM.
   - Log loss: 0.3970 (baseline 0.4452, 10.8% reduction)
   - AUC: 0.7321
   - Model calibration within 2 percentage points across probability bins
+- LightGBM model with native categorical handling
+  - Ordinal encoding of categorical columns (avoids memory issues with pandas category)
+  - 21 categorical features + 2 boolean features (device_id, device_ip excluded due to high cardinality)
+  - Trained on full 32M rows, stopped after 211 iterations via early stopping
+  - Log loss: 0.3889 (2% improvement over logistic regression baseline)
+  - AUC: 0.7466 (vs 0.7321 for logistic regression)
+  - Better calibration than logistic regression without post-processing
 
 ### Next steps
 
-- LightGBM model
-- Hyperparameter tuning and feature importance analysis
 - Probability calibration
 - A/B test simulation and statistical power analysis
 - Deployment setup (Docker, CI/CD)
@@ -69,6 +74,7 @@ Work in progress. Current phase: baseline model complete, moving to LightGBM.
 
 ## Repository Structure
 
+'''
 ctr-prediction/
 ├── data/ # datasets (git-ignored)
 ├── notebooks/ # Jupyter notebooks for EDA and experiments
@@ -82,6 +88,7 @@ ctr-prediction/
 ├── tests/ # unit tests
 ├── environment.yml # conda environment definition
 └── README.md # this file
+'''
 
 ## Author
 
