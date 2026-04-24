@@ -74,7 +74,7 @@ Work in progress. Current phase: baseline model complete, moving to LightGBM.
 
 ## Repository Structure
 
-'''
+```
 ctr-prediction/
 ├── data/ # datasets (git-ignored)
 ├── notebooks/ # Jupyter notebooks for EDA and experiments
@@ -88,7 +88,7 @@ ctr-prediction/
 ├── tests/ # unit tests
 ├── environment.yml # conda environment definition
 └── README.md # this file
-'''
+```
 
 ## Author
 
