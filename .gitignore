@@ -104,3 +104,5 @@ htmlcov/
 .pytest_cache/
 .mypy_cache/
 .ruff_cache/
+
+notebooks/04-5_lightgbm_test.ipynb
