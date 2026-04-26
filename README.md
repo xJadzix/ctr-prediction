@@ -64,6 +64,14 @@ Work in progress. Current phase: baseline model complete, moving to LightGBM.
   - Log loss: 0.3889 (2% improvement over logistic regression baseline)
   - AUC: 0.7466 (vs 0.7321 for logistic regression)
   - Better calibration than logistic regression without post-processing
+- Hyperparameter tuning experiments for LightGBM
+  - Experiment 1: lower learning_rate (0.05) - marginal improvement, AUC 0.7472
+  - Experiment 2: larger trees (num_leaves=127) - slightly worse than default
+  - Experiment 3: aggressive tuning (low LR + larger trees + stronger regularization) - marginal improvement, AUC 0.7469
+  - Conclusion: default LightGBM parameters were close to optimal for this dataset, model from experiment 1 will be treated as final
+- Model persistence
+  - All trained models saved to disk (LightGBM as .txt, sklearn models as .pkl via joblib)
+  - Encoders also saved (OneHotEncoder for logistic regression, OrdinalEncoder for LightGBM)
 
 ### Next steps
 
