@@ -72,10 +72,20 @@ Work in progress. Current phase: baseline model complete, moving to LightGBM.
 - Model persistence
   - All trained models saved to disk (LightGBM as .txt, sklearn models as .pkl via joblib)
   - Encoders also saved (OneHotEncoder for logistic regression, OrdinalEncoder for LightGBM)
+- DART boosting experiment
+  - Alternative gradient boosting type with dropout mechanism
+  - Trained for 205 minutes vs 21 min for GBDT
+  - Result: AUC 0.7442 (worse than GBDT 0.7466) and log loss 0.3907 (worse than 0.3889)
+  - Conclusion: DART not suitable for this problem - significantly slower with worse results
+- Probability calibration
+  - Split validation set into calibration set (4M rows) and new validation set (4M rows)
+  - Tested two methods: Platt scaling and isotonic regression
+  - Platt scaling worsened results (ECE 0.0224 vs 0.0045 uncalibrated, log loss 0.3935)
+  - Isotonic regression improved calibration significantly (ECE 0.0007, 6x better than uncalibrated)
+  - Final pipeline: ordinal_encoder + lightgbm_final + isotonic_calibrator saved to disk
 
 ### Next steps
 
-- Probability calibration
 - A/B test simulation and statistical power analysis
 - Deployment setup (Docker, CI/CD)
 - Real-time serving simulation with Kafka
