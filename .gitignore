@@ -10,14 +10,20 @@ data/processed/*
 
 # ===== MODELE =====
 # Wytrenowane modele są duże i nie powinny być w repo
-models/*
-!models/.gitkeep
+# Generic ML model files - ignore everywhere except those explicitly allowed above
 *.pkl
 *.joblib
 *.h5
 *.pt
 *.pth
 *.onnx
+# Models folder - ignore by default, except production models (keep those in repo)
+models/*
+!models/.gitkeep
+!models/lightgbm_final.txt
+!models/ordinal_encoder.pkl
+!models/isotonic_calibrator.pkl
+
 
 # ===== WYGENEROWANE RAPORTY =====
 reports/figures/*
