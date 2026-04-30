@@ -106,3 +106,4 @@ htmlcov/
 .ruff_cache/
 
 notebooks/04-5_lightgbm_test.ipynb
+notebooks/06_5_calibration_tests.ipynb
