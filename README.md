@@ -83,11 +83,26 @@ Work in progress. Current phase: baseline model complete, moving to LightGBM.
   - Platt scaling worsened results (ECE 0.0224 vs 0.0045 uncalibrated, log loss 0.3935)
   - Isotonic regression improved calibration significantly (ECE 0.0007, 6x better than uncalibrated)
   - Final pipeline: ordinal_encoder + lightgbm_final + isotonic_calibrator saved to disk
+- A/B test simulation comparing logistic regression and calibrated LightGBM
+  - Used 4M unbiased rows (not seen by either model during training/calibration)
+  - Top-K analysis at multiple thresholds (1%, 5%, 10%, 20%, 50%)
+  - LightGBM achieved +6.82% relative lift in click rate at top 5% threshold
+  - Statistical significance: Z-statistic 20.14, P-value < 10^-80
+  - 95% CI for relative lift: [6.16%, 7.48%]
+  - Power analysis: sample size 51.7x larger than required for 80% power
+  - Cohen's h effect size: 0.0635 (small, but significant in RTB context)
+- Production-ready serving with FastAPI and Docker
+  - REST API with endpoints: /health, /info, /predict
+  - Pydantic validation for request/response schemas
+  - Loads model, encoder, and calibrator at startup
+  - Containerized with Docker (Python 3.11-slim base + libgomp1 for LightGBM)
+- CI/CD pipeline with GitHub Actions
+  - Automated Docker build on every push to main
+  - Container startup verification
+  - Endpoint testing (health and predict)
 
 ### Next steps
 
-- A/B test simulation and statistical power analysis
-- Deployment setup (Docker, CI/CD)
 - Real-time serving simulation with Kafka
 
 ## Repository Structure
