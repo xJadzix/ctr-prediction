@@ -32,7 +32,7 @@ Source: https://www.kaggle.com/c/avazu-ctr-prediction/data
 
 ## Status
 
-Work in progress. Current phase: baseline model complete, moving to LightGBM.
+Project complete.
 
 ### Completed
 
@@ -100,25 +100,31 @@ Work in progress. Current phase: baseline model complete, moving to LightGBM.
   - Automated Docker build on every push to main
   - Container startup verification
   - Endpoint testing (health and predict)
+- Real-time streaming pipeline with Apache Kafka
+  - Kafka broker running in KRaft mode via Docker
+  - Producer reads ad impressions from val_split.parquet and publishes to ad-impressions topic
+  - Consumer subscribes to topic and loads model components (model, ordinal encoder and isotonic calibrator) at startup
+  - Real-time CTR predictions with raw and calibrated values
+  - Complete pipeline: data --> Kafka --> ML predictions
 
-### Next steps
-
-- Real-time serving simulation with Kafka
 
 ## Repository Structure
 
 ```
 ctr-prediction/
+├── .github/
+│   └── workflows/ # GitHub Actions CI/CD
 ├── data/ # datasets (git-ignored)
-├── notebooks/ # Jupyter notebooks for EDA and experiments
-├── src/ # Python modules
-│ ├── data/ # data loading and preprocessing
-│ ├── features/ # feature engineering
-│ ├── models/ # training, evaluation, calibration
-│ └── utils/ # helper functions
-├── models/ # trained models (git-ignored)
-├── reports/ # figures and metrics
-├── tests/ # unit tests
+├── notebooks/ # Jupyter notebooks for EDA, training, and experiments
+├── models/ # trained models (git-ignored, except production models)
+├── serving/ # FastAPI application and Docker configuration
+│   ├── app.py
+│   ├── Dockerfile
+│   └── requirements.txt
+├── streaming/ # Kafka streaming pipeline
+│   ├── docker-compose.yml
+│   ├── producer.py
+│   └── consumer.py
 ├── environment.yml # conda environment definition
 └── README.md # this file
 ```
